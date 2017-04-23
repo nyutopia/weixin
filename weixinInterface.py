@@ -34,3 +34,12 @@ class WeixinInterface:
         #如果是来自微信的请求，则回复echostr
         if hashcode == signature:
             return echostr
+    def POST(self)
+	str_xml=web.data() #获得post来的数据
+	xml = etree.fromstring(str_xml)#进行xml解析
+	content=xml.find("Content").text#获得用户所输入的内容
+	msgType=xml.find("MsgType").text
+	fromUser=xml.find("FromUserName").text
+	toUser=xml.find("ToUserName").text
+	return self.render.reply_text(fromUser,toUser,int(time.time()),u"我现在还在开发中，还没有什么功能，您刚才说的是：“+content)
+	
