@@ -6,4 +6,4 @@ libraries:
 	version: "0.38"
 
 - name: lxml
-	version: "2.3.4"
+	version: "2.3"
