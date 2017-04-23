@@ -1,6 +1,3 @@
-def application(environ, start_response):
-    start_response('200 ok', [('content-type', 'text/plain')])
-    return ['Hello, SAE!']
 
 #coding: UTF-8
 import os
