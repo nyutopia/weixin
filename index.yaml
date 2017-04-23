@@ -2,8 +2,7 @@ name: nyannew920919
 version:1
 
 libraries:
-- name: web 
-	version: "0.38"
+
 
 - name: lxml
 	version: "2.3"
