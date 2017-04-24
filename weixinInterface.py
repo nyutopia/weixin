@@ -33,7 +33,31 @@ class WeixinInterface:
         #如果是来自微信的请求，则回复echostr
         if hashcode == signature:
             return echostr
-    def POST(self):
+   
+    def youdao(word):
+        qword=urllib2.quote(word)
+        baseurl=r"http://fanyi.youdao.com/openapi.do?keyfrom=nyutopia&key=1909528419&type=data&doctype=json&version=1.1&q="
+        url=baseurl+qword
+        resp=urllib2.urlopen(url)
+        fanyi=json.loads(resp.read())
+        if fanyi['errorCode']==0:
+            if 'basic' in fanyi.keys():
+                trans=u"%s:\n%s\n%s\n网络释义:\n%s"%(fanyi['query']," ".join(fanyi['translation'])," ".join(fanyi['basic']['explains'])," ".join(fanyi['web'][0]['value']))
+            else:
+                trans=u'%s:\n基本翻译:%s\n'%(fanyi['query']," ".join(fanyi['translation']))
+            return trans
+        elif fanyi['errorCode']==20:
+            return u'对不起，要翻译的文本过长'
+        elif fanyi['errorCode']==30:
+            return u'对不起，无法进行有效的翻译'
+        elif fanyi['errorCode']==40:
+            return u'对不起，不支持的语言类型'
+        else:
+            return u'对不起，您输入的单词%s无法进行翻译，请检查拼写'% word
+
+
+
+     def POST(self):
 	str_xml=web.data() #获得post来的数据
 	xml = etree.fromstring(str_xml)#进行xml解析
 	content=xml.find("Content").text#获得用户所输入的内容
@@ -46,25 +70,4 @@ class WeixinInterface:
 	Nword = youdao(content)
 #       	return self.render.reply_text(fromUser,toUser,int(time.time()),u#"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
 	return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
-    def youdao(word):
-	qword=urllib2.quote(word)
-	baseurl=r"http://fanyi.youdao.com/openapi.do?keyfrom=nyutopia&key=1909528419&type=data&doctype=json&version=1.1&q="
-	url=baseurl+qword
-	resp=urllib2.urlopen(url)
-	fanyi=json.loads(resp.read())
-	if fanyi['errorCode']==0:
-	    if 'basic' in fanyi.keys():
-		trans=u"%s:\n%s\n%s\n网络释义:\n%s"%(fanyi['query']," ".join(fanyi['translation'])," ".join(fanyi['basic']['explains'])," ".join(fanyi['web'][0]['value']))
-	    else:
-		trans=u'%s:\n基本翻译:%s\n'%(fanyi['query']," ".join(fanyi['translation']))
-            return trans
-	elif fanyi['errorCode']==20:
-	    return u'对不起，要翻译的文本过长'
-	elif fanyi['errorCode']==30:
-	    return u'对不起，无法进行有效的翻译'
-	elif fanyi['errorCode']==40:
-	    return u'对不起，不支持的语言类型'
-	else:
-	    return u'对不起，您输入的单词%s无法进行翻译，请检查拼写'% word
-
-	
+ 	
