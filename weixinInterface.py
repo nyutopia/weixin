@@ -47,7 +47,7 @@ class WeixinInterface:
 #       	return self.render.reply_text(fromUser,toUser,int(time.time()),u#"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
 	return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
     def youdao(word):
-	qword=urlib2.quote(word)
+	qword=urllib2.quote(word)
 	baseurl=r"http://fanyi.youdao.com/openapi.do?keyfrom=nyutopia&key=1909528419&type=data&doctype=json&version=1.1&q="
 	url=baseurl+qword
 	resp=urllib2.urlopen(url)
