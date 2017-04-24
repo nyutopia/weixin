@@ -61,7 +61,7 @@ class WeixinInterface:
 	elif fanyi['errorCode']==20:
 		return u'对不起，要翻译的文本过长'
 	elif fanyi['errorCode']==30:
-		return u'对不起，无法进行有效的翻译’
+		return u'对不起，无法进行有效的翻译'
 	elif fanyi['errorCode']==40:
 		return u'对不起，不支持的语言类型'
 	else:
