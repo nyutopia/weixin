@@ -61,10 +61,10 @@ class WeixinInterface:
         msgType=xml.find("MsgType").text
         fromUser=xml.find("FromUserName").text
         toUser=xml.find("ToUserName").text
-#        if type(content).__name__=='unicode':
-#            content=content.encode('UTF-8')
+        if type(content).__name__=='unicode':
+            content=content.encode('UTF-8')
 	
-#    	Nword = youdao(content)
-        return self.render.reply_text(fromUser,toUser,int(time.time()),u"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
-#        return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+    	Nword = youdao(content)
+ #       return self.render.reply_text(fromUser,toUser,int(time.time()),u"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
+        return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
  	
