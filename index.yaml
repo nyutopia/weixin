@@ -2,9 +2,15 @@ name: nyannew920919
 version:1
 
 libraries:
-- name: webpy
+- name: web
 	version: "0.36" 
 
 - name: lxml
 	version: "2.3" 
+    
+- name: json
+	version: "2.0.9" 
+
+- name: urllib2
+	version: "2.7"
     
