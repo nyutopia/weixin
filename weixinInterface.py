@@ -36,8 +36,8 @@ class WeixinInterface:
             return echostr
    
     def youdao(word):
-        qword=urllib2.quote(word)
-        baseurl=r"https://fanyi.youdao.com/openapi.do?keyfrom=nyutopia&key=1909528419&type=data&doctype=json&version=1.1&q="
+		qword=urllib2.quote(word)
+		baseurl=r"https://fanyi.youdao.com/openapi.do?keyfrom=nyutopia&key=1909528419&type=data&doctype=json&version=1.1&q="
         url=baseurl+qword
         resp=urllib2.urlopen(url)
         fanyi=json.loads(resp.read())
