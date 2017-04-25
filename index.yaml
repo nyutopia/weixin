@@ -2,7 +2,9 @@ name: nyannew920919
 version:1
 
 libraries:
-
+- name: webpy
+	version: "0.36" 
 
 - name: lxml
-	version: "2.3"
+	version: "2.3" 
+    
