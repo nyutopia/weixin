@@ -69,7 +69,7 @@ class WeixinInterface:
     
     def POST(self):
         str_xml=web.data() #获得post来的数据
-        print "str_xml is",str_xml
+        print "str_xml is"+str_xml
         xml = etree.fromstring(str_xml)#进行xml解析
         content=xml.find("Content").text#获得用户所输入的内容
         msgType=xml.find("MsgType").text
