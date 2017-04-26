@@ -43,7 +43,7 @@ class WeixinInterface:
       		data=web.input()
             if len(data)==0:
                 return "hello,this is WeixinInterface view"
-        	signature=data.signature
+            signature=data.signature
         	timestamp=data.timestamp
         	nonce=data.nonce
         	echostr=data.echostr
