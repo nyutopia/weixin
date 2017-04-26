@@ -44,7 +44,7 @@ class WeixinInterface:
             if len(data)==0:
                 return "hello,this is WeixinInterface view"
             signature=data.signature
-        	timestamp=data.timestamp
+            timestamp=data.timestamp
         	nonce=data.nonce
         	echostr=data.echostr
         	#自己的token
