@@ -40,7 +40,7 @@ class WeixinInterface:
     def GET(self):
         try:
         	#获取输入参数
-        	data=web.input()
+      		data=web.input()
             if len(data)==0:
                 return "hello,this is WweixinInterface view"
         	signature=data.signature
