@@ -51,19 +51,19 @@ class WeixinInterface:
             token="nyannew920919" #这里改写你在微信公众平台里输入的token
         
         	#字典序排序
-        	list=[token,timestamp,nonce]
-        	list.sort()
-        	sha1=hashlib.sha1()
-        	map(sha1.update,list)
-        	hashcode=sha1.hexdigest()
-        	#sha1加密算法  
+            list=[token,timestamp,nonce]
+            list.sort()
+            sha1=hashlib.sha1()
+            map(sha1.update,list)
+            hashcode=sha1.hexdigest()
+            #sha1加密算法  
             print "WeixinInterface/GET fuc:hashcode,signature:",hashcode,signature
             #如果是来自微信的请求，则回复echostr
             if hashcode == signature:
                 return echostr
             else:
                 return ""
-		except Exception,Argument:
+        except Exception,Argument:
             return Argument
    
     
