@@ -37,25 +37,33 @@ class WeixinInterface:
         self.render=web.template.render(self.templates_root)
         
     def GET(self):
-        #获取输入参数
-        data=web.input()
-        signature=data.signature
-        timestamp=data.timestamp
-        nonce=data.nonce
-        echostr=data.echostr
-        #自己的token
-        token="nyannew920919" #这里改写你在微信公众平台里输入的token
-        #字典序排序
-        list=[token,timestamp,nonce]
-        list.sort()
-        sha1=hashlib.sha1()
-        map(sha1.update,list)
-        hashcode=sha1.hexdigest()
-        #sha1加密算法        
-
-        #如果是来自微信的请求，则回复echostr
-        if hashcode == signature:
-            return echostr
+        try:
+        	#获取输入参数
+        	data=web.input()
+            if len(data)=0:
+                return "hello,this is WweixinInterface view"
+        	signature=data.signature
+        	timestamp=data.timestamp
+        	nonce=data.nonce
+        	echostr=data.echostr
+        	#自己的token
+        	token="nyannew920919" #这里改写你在微信公众平台里输入的token
+        
+        	#字典序排序
+        	list=[token,timestamp,nonce]
+        	list.sort()
+        	sha1=hashlib.sha1()
+        	map(sha1.update,list)
+        	hashcode=sha1.hexdigest()
+        	#sha1加密算法  
+            print "WeixinInterface/GET fuc:hashcode,signature:",hashcode,signature
+            #如果是来自微信的请求，则回复echostr
+            if hashcode == signature:
+                return echostr
+            else:
+                return ""
+		except Exception,Argument:
+            return Argument
    
     
     def POST(self):
