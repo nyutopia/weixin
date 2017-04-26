@@ -45,10 +45,10 @@ class WeixinInterface:
                 return "hello,this is WeixinInterface view"
             signature=data.signature
             timestamp=data.timestamp
-        	nonce=data.nonce
-        	echostr=data.echostr
+            nonce=data.nonce
+            echostr=data.echostr
         	#自己的token
-        	token="nyannew920919" #这里改写你在微信公众平台里输入的token
+            token="nyannew920919" #这里改写你在微信公众平台里输入的token
         
         	#字典序排序
         	list=[token,timestamp,nonce]
