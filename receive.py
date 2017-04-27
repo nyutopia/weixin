@@ -9,7 +9,7 @@ def parse_xml(web_data):
     msg_type = xmlData.find('MsgType').text
     
     if msg_type=='text':
-        print "TextMsg"
+        
         return TextMsg(xmlData)
     elif msg_type == 'image':
         return ImageMsg(xmlData)
