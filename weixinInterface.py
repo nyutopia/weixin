@@ -88,12 +88,15 @@ class WeixinInterface:
             
                 
             if isinstance(recMsg,receive.Msg) and recMsg.MsgType == 'text':
-               
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
-                content = recMsg.Content
-                Nword=youdao(content)
-                return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+                if recMsg.MsgType == "text":
+                    content = recMsg.Content
+                    Nword=youdao(content)
+                    return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+                elif recMsg.MsgType == "image"
+                    mediaId = recMsg.MediaId
+                    return self.render.reply_image(fromUser,toUser,in(time.time()),mediaId)
             else:
                 print "暂且不处理"
                 return "success"
