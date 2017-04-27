@@ -7,8 +7,9 @@ def parse_xml(web_data):
     xmlData = etree.fromstring(web_data)
     
     msg_type = xmlData.find('MsgType').text
-    print "msg_type:" ,msg_type
+    
     if msg_type=='text':
+        print "TextMsg"
         return TextMsg(xmlData)
     elif msg_type == 'image':
         return ImageMsg(xmlData)
