@@ -85,10 +85,10 @@ class WeixinInterface:
             str_xml=web.data()
             print "str_xml is: ",str_xml
             recMsg=receive.parse_xml(str_xml)
-            if isinstance(recMsg,receive.Msg) and recMsg.MsgType == 'text':
-                print "success"
-            if isinstance(recMsg,recive.Msg) and recMsg.MsgType == 'text':
+            
                 
+            if isinstance(recMsg,receive.Msg) and recMsg.MsgType == 'text':
+               
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
                 content = recMsg.Content
