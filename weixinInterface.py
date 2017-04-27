@@ -7,6 +7,7 @@ import os
 import urllib2
 import json
 from lxml import etree
+import receive
 
 
 def youdao(word):
@@ -68,16 +69,31 @@ class WeixinInterface:
    
     
     def POST(self):
-        str_xml=web.data() #获得post来的数据
-        print "str_xml is"+str_xml
-        xml = etree.fromstring(str_xml)#进行xml解析
-        content=xml.find("Content").text#获得用户所输入的内容
-        msgType=xml.find("MsgType").text
-        fromUser=xml.find("FromUserName").text
-        toUser=xml.find("ToUserName").text
-        if type(content).__name__=='unicode':
-            content=content.encode('UTF-8')
-        Nword = youdao(content)
-        #return self.render.reply_text(fromUser,toUser,int(time.time()),u"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
-        return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
- 	
+#        str_xml=web.data() #获得post来的数据
+#        print "str_xml is"+str_xml
+#        xml = etree.fromstring(str_xml)#进行xml解析
+#        content=xml.find("Content").text#获得用户所输入的内容
+#        msgType=xml.find("MsgType").text
+#        fromUser=xml.find("FromUserName").text
+#        toUser=xml.find("ToUserName").text
+#        if type(content).__name__=='unicode':
+#            content=content.encode('UTF-8')
+#        Nword = youdao(content)
+#        #return self.render.reply_text(fromUser,toUser,int(time.time()),u"我现在还在开发中，还没有什么功能，您刚才说的是："+content)
+#        return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+        try:
+            str_xml=web.data()
+            print "str_xml is: ",str_xml
+            recMsg=receive.parse_xml(str_xml)
+            if isinstance(recMsg,recive.Msg) and recMsg.MsgType == 'text':
+                fromUser = recMsg.FromUserName
+                toUser = recMsg.ToUserName
+                content = recMsg.Content
+                Nword=youdao(content)
+                return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+            else:
+                print "暂且不处理"
+                return "success"
+        except Exception,Argument:
+            return Argument
+
