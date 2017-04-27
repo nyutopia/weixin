@@ -96,7 +96,7 @@ class WeixinInterface:
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
                 elif recMsg.MsgType == "image":
                     mediaId = recMsg.MediaId
-                    return self.render.reply_image(fromUser,toUser,in(time.time()),mediaId)
+                    return self.render.reply_image(fromUser,toUser,int(time.time()),mediaId)
                 else:
                     return "success"
             else:
