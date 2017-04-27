@@ -100,7 +100,7 @@ class WeixinInterface:
                 elif recMsg.MsgType == 'event':
                     if recMsg.Event = "subscribe":
                         content = u"欢迎关注本订阅号，这个订阅号是本人业余爱好所建立"
-                        return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),content)
                 else:
                     return "success"
             else:
