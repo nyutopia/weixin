@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
-import xml.etree.ElementTree as ET
+from lxml import etree
 
 def parse_xml(web_data):
     if len(web_data) == 0:
         return None
-    xmlData = ET.fromstring(web_data)
+    xmlData = etree.fromstring(web_data)
     msg_type = xmlData.find('MsgType').text
     if msg_type=='text':
         return TextMsg(xmlData)
