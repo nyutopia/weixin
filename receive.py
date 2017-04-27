@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from lxml import etree
-
+import lxml
 def parse_xml(web_data):
     if len(web_data) == 0:
         return None
