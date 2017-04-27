@@ -87,7 +87,7 @@ class WeixinInterface:
             recMsg=receive.parse_xml(str_xml)
   
             if isinstance(recMsg,recive.Msg) and recMsg.MsgType == 'text':
-                
+                print "instance"
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
                 content = recMsg.Content
