@@ -86,7 +86,7 @@ class WeixinInterface:
             print "str_xml is: ",str_xml
             recMsg=receive.parse_xml(str_xml)
             print "isinstance"
-            if isinstance(recMsg,recive.Msg):
+            if isinstance(recMsg,recive.TextMsg):
                 print "is Msg"
             else:
                 print "is not Msg"
