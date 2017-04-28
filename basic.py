@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #filename:basic.py
 
-import urllib2
+import urllib
 import time
 import json
 
@@ -13,7 +13,7 @@ class Basic:
         appId="wxa5c9d01aa2356bd5"
         appSecret="744a88572d4e346ddcfc144bb498b366"
         postUrl=("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s"%(appId,appSecret))
-        urlResp=urllib2.urlopen(postUrl)
+        urlResp=urllib.urlopen(postUrl)
         urlResp=json.loads(urlResp.read())
 
         self.__accessToken=urlResp['access_token']
