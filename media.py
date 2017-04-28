@@ -2,6 +2,7 @@
 #filename:media.py
 from basic import Basic
 import urllib2
+import os
 import poster.encode
 from poster.streaminghttp import register_openers
 
@@ -10,8 +11,8 @@ class Media(object):
         register_openers()
     #上传图片
     def upload(self,accessToken,filePath,mediaType):
-        openFile=open(filePath),"rb")
-        param={"media":openFile)
+        openFile=open(filePath,"rb")
+        param={"media":openFile}
         postData,postHeaders=poster.encode.multipart_encode(param)
  
         postUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=%s&type=%s"%(accessToken,mediaType)
@@ -21,6 +22,8 @@ class Media(object):
 if __name__=='__main__':
     myMedia=Media()
     accessToken = Basic().get_access_token()
-    filePath = ""
+    root=os.path.dirname(__file__)
+    filePath =os.path.join(root,'media/image/1.jpg')
+    mediaType='image'
     myMedia.upload(accessToken,filePath,mediaType)
 
