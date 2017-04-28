@@ -19,3 +19,10 @@ render=web.template.render(templates_root)
 
 app=web.application(urls,globals()).wsgifunc()
 application=sae.create_wsgi_app(app)
+
+
+def appUpdate(environ, start_response):
+    # Your app
+    return "hello sae"
+
+application = sae.create_wsgi_app(appUpdate)
