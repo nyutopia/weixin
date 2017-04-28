@@ -7,10 +7,10 @@ import web
 
 sae.add_vendor_dir('vendor')
 from weixinInterface import WeixinInterface
-
+from media import Media
 urls=(
-	'/weixin','WeixinInterface'
-
+	'/weixin','WeixinInterface',
+	'/','Media'
 )
 
 app_root=os.path.dirname(__file__)
@@ -21,8 +21,3 @@ app=web.application(urls,globals()).wsgifunc()
 application=sae.create_wsgi_app(app)
 
 
-def appUpdate(environ, start_response):
-    # Your app
-    return "hello sae"
-
-application = sae.create_wsgi_app(appUpdate)
