@@ -20,11 +20,12 @@ class Media(object):
         urlResp = urllib2.urlopen(request)
         print urlResp.read()
         print "123"
-if __name__=='__main__':
-    myMedia=Media()
-    accessToken = Basic().get_access_token()
-    root=os.path.dirname(__file__)
-    filePath =os.path.join(root,'media/image/1.jpg')
-    mediaType='image'
-    myMedia.upload(accessToken,filePath,mediaType)
+    def GET(self):
+     	accessToken = Basic().get_access_token()
+        root=os.path.dirname(__file__)
+        filePath =os.path.join(root,'media/image/1.jpg')
+        mediaType='image'
+        upload(accessToken,filePath,mediaType)
+
+    
 
