@@ -23,11 +23,12 @@ class Media(object):
         except Exception,e:
             print "exception " 
     def GET(self):
-     	accessToken = Basic().get_access_token()
-        root=os.path.dirname(__file__)
-        filePath =os.path.join(root,'media/image/1.jpg')
-        mediaType='image'
-        upload(accessToken,filePath,mediaType)
+     	#accessToken = Basic().get_access_token()
+        #root=os.path.dirname(__file__)
+        #filePath =os.path.join(root,'media/image/1.jpg')
+        #mediaType='image'
+        #upload(accessToken,filePath,mediaType)
+        return  "123"
 
     
 
