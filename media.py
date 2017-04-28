@@ -19,6 +19,7 @@ class Media(object):
         request=urllib2.Request(postUrl,postData,postHeaders)
         urlResp = urllib2.urlopen(request)
         print urlResp.read()
+        print "123"
 if __name__=='__main__':
     myMedia=Media()
     accessToken = Basic().get_access_token()
