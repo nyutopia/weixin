@@ -16,7 +16,7 @@ class Media(object):
         postData,postHeaders=poster.encode.multipart_encode(param)
  
         postUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=%s&type=%s"%(accessToken,mediaType)
-        try
+        try:
             request=urllib2.Request(postUrl,postData,postHeaders)
             urlResp = urllib2.urlopen(request)
             print urlResp.read()
