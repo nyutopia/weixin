@@ -10,4 +10,5 @@ $def with(toUser,fromUser,createTime,musicTitle,musicDes,musicURL)
 <MusicUrl><![CDATA[$musicURL]]></MusicUrl>
 <HQMusicUrl><![CDATA[$musicURL]]></HQMusicUrl>
 </Music>
+<FuncFlag>0</FuncFlag>
 </xml>
