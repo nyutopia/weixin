@@ -8,7 +8,7 @@ import urllib2
 import json
 from lxml import etree
 import receive
-
+import random
 
 def youdao(word):
         qword=urllib2.quote(word)
@@ -92,6 +92,18 @@ class WeixinInterface:
                 toUser = recMsg.ToUserName
                 if recMsg.MsgType == "text":
                     content = recMsg.Content
+                    if content = 'help':
+                        replyText=u"1.输入中文或者英文返回对应的英中翻译\n2.输入m随机来首音乐听，建议在WiFi下听"
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),replyText)
+                    if content = 'm'
+                        musicList = [
+                                       [r"https://pan.baidu.com/s/1skTCq9v",u'南方姑娘']
+                                       [r'https://pan.baidu.com/s/1skXGcFF',u'推开世界的门']
+                                ]
+                        music = random.choice(musicList)
+                        musicTile = music[1]
+                        musicURL = music[0]
+                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"",musicURL)
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
                 elif recMsg.MsgType == "image":
@@ -99,7 +111,7 @@ class WeixinInterface:
                     return self.render.reply_image(fromUser,toUser,int(time.time()),mediaId)
                 elif recMsg.MsgType == 'event':
                     if recMsg.Event == "subscribe":
-                        content = u"欢迎关注本订阅号，这个订阅号是本人业余爱好所建立,功能还在完善中"
+                        content = u"欢迎关注本订阅号，这个订阅号是本人业余爱好所建立,输入help查看功能，目前功能还在完善中"
                         return self.render.reply_text(fromUser,toUser,int(time.time()),content)
                 else:
                     return "success"
