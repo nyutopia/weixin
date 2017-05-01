@@ -103,6 +103,7 @@ class WeixinInterface:
                         music = random.choice(musicList)
                         musicTile = music[1]
                         musicURL = music[0]
+                        print musicTile:musicURL
                         return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"",musicURL)
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
