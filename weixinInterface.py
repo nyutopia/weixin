@@ -96,6 +96,7 @@ class WeixinInterface:
                         replyText=u"1.输入中文或者英文返回对应的英中翻译\n2.输入m随机来首音乐听，建议在WiFi下听"
                         return self.render.reply_text(fromUser,toUser,int(time.time()),replyText)
                     if content == 'm':
+                        print "m"
                         musicList = [
                                        [r"https://pan.baidu.com/s/1skTCq9v",u'南方姑娘']
                                        [r'https://pan.baidu.com/s/1skXGcFF',u'推开世界的门']
