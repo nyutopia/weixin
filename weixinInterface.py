@@ -101,9 +101,9 @@ class WeixinInterface:
                                        [r'https://pan.baidu.com/s/1skXGcFF',u'推开世界的门']
                                 ]
                         music = random.choice(musicList)
-                        musicTile = music[1]
+                        musicTitle = music[1]
                         musicURL = music[0]
-                        print musicTile:musicURL
+                        print musicTitle:musicURL
                         return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"",musicURL)
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
