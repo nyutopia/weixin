@@ -105,7 +105,7 @@ class WeixinInterface:
                         musicTitle = music[1]
                         musicURL = music[0]
                         
-                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"",musicURL)
+                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"你好",musicURL)
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
                 elif recMsg.MsgType == "image":
