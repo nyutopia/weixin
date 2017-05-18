@@ -9,6 +9,8 @@ import json
 from lxml import etree
 import receive
 import random
+import pylibmc
+
 
 def youdao(word):
         qword=urllib2.quote(word)
