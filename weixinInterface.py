@@ -98,8 +98,8 @@ class WeixinInterface:
                     if content == 'm':
                         
                         musicList = [
-                                       [r"http://music.163.com/#/m/song?id=26060065",u'南方姑娘'],
-                                       [r'http://music.163.com/#/m/song?id=26060065',u'推开世界的门']
+                                       [r"http://pan.baidu.com/s/1nv4tidF",u'南方姑娘'],
+                                       [r'http://pan.baidu.com/s/1nv4tidF',u'推开世界的门']
                                 ]
                         music = random.choice(musicList)
                         musicTitle = music[1]
