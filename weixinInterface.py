@@ -121,7 +121,7 @@ class WeixinInterface:
                     if(mctl == 'tl'):
                         res = tuling(content)
                         if(res[u'code']==100000):
-                            reply_text=res[u'info']
+                            reply_text=res[u'text']
                
                             return self.render.reply_text(fromUser,toUser,int(time.time()),reply_text)
                     
