@@ -33,7 +33,20 @@ def youdao(word):
             return u'对不起，不支持的语言类型'
         else:
             return u'对不起，您输入的单词%s无法进行翻译，请检查拼写'% word
-        
+     
+    
+def xiaohuangji(ask):
+    ask = ask.encode('UTF-8')
+    enask = urllib2.quote(ask)
+    send_headers = {
+    'Cookie':'Filtering=0.0; Filtering=0.0; isFirst=1; isFirst=1; simsimi_uid=50840753; simsimi_uid=50840753; teach_btn_url=talk; teach_btn_url=talk; sid=s%3AzwUdofEDCGbrhxyE0sxhKEkF.1wDJhD%2BASBfDiZdvI%2F16VvgTJO7xJb3ZZYT8yLIHVxw; selected_nc=zh; selected_nc=zh; menuType=web; menuType=web; __utma=119922954.2139724797.1396516513.1396516513.1396703679.3; __utmc=119922954; __utmz=119922954.1396516513.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)'
+    }
+    baseurl = r'http://www.simsimi.com/func/reqN?lc=zh&ft=0.0&req='
+    url = baseurl + enask
+    req = urllib2.Request(url,headers=send_headers)
+    resp = urllib2.urlopen(req)
+    reson = json.loads(resp.read())
+    return reson
 class WeixinInterface:
     def __init__(self):
     	self.app_root=os.path.dirname(__file__)
@@ -87,27 +100,44 @@ class WeixinInterface:
             str_xml=web.data()
             print "str_xml is: ",str_xml
             recMsg=receive.parse_xml(str_xml)
-            
+            mc=pylibmc.Client()
                 
             if isinstance(recMsg,receive.Msg):
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
                 if recMsg.MsgType == "text":
                     content = recMsg.Content
-                    if content == 'help':
+                    if content.lower() == 'help':
                         replyText=u"1.输入中文或者英文返回对应的英中翻译\n2.输入m随机来首音乐听，建议在WiFi下听"
                         return self.render.reply_text(fromUser,toUser,int(time.time()),replyText)
-                    if content == 'm':
-                        
-                        musicList = [
-                                       [r'http://bcs.duapp.com/yangyanxingblog3/music/destiny.mp3','Destiny',u'献给我的宝贝晶晶'],
-                                       [r'http://bcs.duapp.com/yangyanxingblog3/music/5days.mp3','5 Days',u'献给我的宝贝晶晶']
-                                ]
-                        music = random.choice(musicList)
-                        musicTitle = music[1]
-                        musicURL = music[0]
-                        
-                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"你好",musicURL)
+                    if content.lower() == 'bye':
+                        mc.delete(fromUser+'_xhj')
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经退出了和小黄鸡的交谈中，请输入help来显示操作指令")
+                    if content.lower() == 'xhj':
+                        mc.set(fromUser+'_xhj','xhj')
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经进入和小黄鸡的交谈中，输入bye来跳出与他的交谈")
+                    
+                    mcxhj = mc.get(fromUser+'_xhj')
+                    if(mcxhj == 'xhj'):
+                        res = xiaohuangji(content)
+                        reply_text = res['sentence_resp']
+                        if u'微信' in reply_text:
+                            reply_text = u"小黄鸡脑袋出问题了，请换个问题"
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),reply_text)
+                    )
+#                    if content == 'm':
+#                        
+#                        musicList = [
+#                                       [r'http://bcs.duapp.com/yangyanxingblog3/music/destiny.mp3','Destiny',u'献给我的宝贝晶晶'],
+#                                       [r'http://bcs.duapp.com/yangyanxingblog3/music/5days.mp3','5 Days',u'献给我的宝贝晶晶']
+#                                ]
+#                        music = random.choice(musicList)
+#                        musicTitle = music[1]
+#                        musicURL = music[0]
+#                        
+#                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"你好",musicURL)
+                    if type(content).__name__ == 'unicode':
+        				content = content.encode('UTF-8'）
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
                 elif recMsg.MsgType == "image":
