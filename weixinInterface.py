@@ -137,7 +137,7 @@ class WeixinInterface:
 #                        
 #                        return self.render.replpy_music(fromUser,toUser,int(time.time()),musicTitle,"你好",musicURL)
                     if type(content).__name__ == 'unicode':
-        				content = content.encode('UTF-8'）
+        				content = content.encode('UTF-8')
                     Nword=youdao(content)
                     return self.render.reply_text(fromUser,toUser,int(time.time()),Nword)
                 elif recMsg.MsgType == "image":
