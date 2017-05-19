@@ -46,6 +46,7 @@ def tuling(ask):
     response = urllib2.urlopen(url2)
     
     reson = json.loads(response.read())
+    print reson
     return reson
 class WeixinInterface:
     def __init__(self):
