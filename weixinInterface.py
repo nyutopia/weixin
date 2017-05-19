@@ -38,8 +38,7 @@ def youdao(word):
 def tuling(ask):
     if type(ask).__name__ == 'unicode':
         ask = ask.encode('UTF-8')
-    
-    print ask
+
     url = r'http://www.tuling123.com/openapi/api'
     data = {u'key':"35d6356ce30c45aa9437f479bf7b2993",u'info':ask,u"loc":"",u"userid":""}
     data = urllib.urlencode(data)
