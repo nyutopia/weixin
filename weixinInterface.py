@@ -121,7 +121,7 @@ class WeixinInterface:
                     
                     mctl = mc.get(fromUser+'_TL')
                     if(mctl == 'tl'):
-                        print content
+                        print type(content).__name__
                         res = tuling(content)
                         
                         if(res[u'code']==100000):
