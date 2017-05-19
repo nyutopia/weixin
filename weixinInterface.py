@@ -115,7 +115,7 @@ class WeixinInterface:
                         return self.render.reply_text(fromUser,toUser,int(time.time()),replyText)
                     if content.lower() == 'bye':
                         mc.delete(fromUser+'_TL')
-                        return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经退出了和图灵机器人的交谈中，请输入help来显示操作指令")
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经退出了和机器人的交谈中，请输入help来显示操作指令")
                     if content.lower() == 'tl':
                         mc.set(fromUser+'_TL','tl')
                         return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经进入和图灵机器人的交谈中，输入bye来跳出与他的交谈")
