@@ -10,7 +10,7 @@ from lxml import etree
 import receive
 import random
 import pylibmc
-
+import urllib
 
 def youdao(word):
         qword=urllib2.quote(word)
@@ -120,7 +120,7 @@ class WeixinInterface:
                     mctl = mc.get(fromUser+'_TL')
                     if(mctl == 'tl'):
                         res = tuling(content)
-                        if(res['code']=='100000'):
+                        if(res['code']='100000):
                             reply_text=res['info']
                
                             return self.render.reply_text(fromUser,toUser,int(time.time()),reply_text)
