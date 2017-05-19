@@ -119,7 +119,8 @@ class WeixinInterface:
                     if content.lower() == 'tl':
                         mc.set(fromUser+'_TL','tl')
                         return self.render.reply_text(fromUser,toUser,int(time.time()),u"您已经进入和图灵机器人的交谈中，输入bye来跳出与他的交谈")
-                    
+                    if content == u"范文韬":
+                        return self.render.reply_text(fromUser,toUser,int(time.time()),u"牛岩喜欢范文韬")
                     mctl = mc.get(fromUser+'_TL')
                     if(mctl == 'tl'):
                         
