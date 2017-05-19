@@ -111,7 +111,7 @@ class WeixinInterface:
                 if recMsg.MsgType == "text":
                     content = recMsg.Content
                     if content.lower() == 'help':
-                        replyText=u"1.输入中文或者英文返回对应的英中翻译\n2.输入m随机来首音乐听，建议在WiFi下听"
+                        replyText=u"1.输入中文或者英文返回对应的英中翻译\n2.输入TL 进入与机器人对话模式，输入bye退出对话模式"
                         return self.render.reply_text(fromUser,toUser,int(time.time()),replyText)
                     if content.lower() == 'bye':
                         mc.delete(fromUser+'_TL')
