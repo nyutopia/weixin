@@ -35,12 +35,12 @@ def youdao(word):
             return u'对不起，您输入的单词%s无法进行翻译，请检查拼写'% word
      
     
-def tuling(ask):
+def tuling(ask,userid):
     if type(ask).__name__ == 'unicode':
         ask = ask.encode('UTF-8')
 
     url = r'http://www.tuling123.com/openapi/api'
-    data = {u'key':"35d6356ce30c45aa9437f479bf7b2993",u'info':ask,u"loc":"",u"userid":""}
+    data = {u'key':"35d6356ce30c45aa9437f479bf7b2993",u'info':ask,u"loc":"",u"userid":userid}
     data = urllib.urlencode(data)
     
     url2 = urllib2.Request(url,data)
@@ -123,7 +123,7 @@ class WeixinInterface:
                     mctl = mc.get(fromUser+'_TL')
                     if(mctl == 'tl'):
                         
-                        res = tuling(content)
+                        res = tuling(content,fromUser)
                         
                         if(res[u'code']==100000):
                             reply_text=res[u'text']
