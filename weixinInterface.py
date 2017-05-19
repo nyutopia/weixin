@@ -37,6 +37,7 @@ def youdao(word):
     
 def tuling(ask):
     ask = ask.encode('UTF-8')
+    print ask
     url = r'http://www.tuling123.com/openapi/api'
     data = {u'key':"35d6356ce30c45aa9437f479bf7b2993",u'info':ask,u"loc":"",u"userid":""}
     data = urllib.urlencode(data)
@@ -120,9 +121,9 @@ class WeixinInterface:
                     
                     mctl = mc.get(fromUser+'_TL')
                     if(mctl == 'tl'):
-                        print 1
+                        
                         res = tuling(content)
-                        print res
+                        
                         if(res[u'code']==100000):
                             reply_text=res[u'text']
                
